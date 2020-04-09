@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ghost_app_background"
+        android:background="@drawable/aftersplash_xml"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -20,7 +20,7 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/textlogo" />
 
 
 
@@ -50,9 +50,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@drawable/button"
+            android:background="@drawable/aftersplashbtn"
             android:text="@string/btn_login"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black"
+            android:fontFamily="cursive"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btn_reset_password"
@@ -62,7 +64,7 @@
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/Black" />
 
         <!-- Link to Login Screen -->
 

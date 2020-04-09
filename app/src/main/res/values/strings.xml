@@ -30,9 +30,9 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
 
 
-    <string name="full_name">full name</string>
-    <string name="password">password</string>
-    <string name="phone">phone</string>
+    <string name="full_name">Full name</string>
+    <string name="password">Password</string>
+    <string name="phone">Phone</string>
     <string name="register">Register</string>
     <string name="input_error_name">name required</string>
     <string name="input_error_email">email required</string>

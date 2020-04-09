@@ -96,7 +96,7 @@ public class login_activity extends AppCompatActivity {
                                 } else {
 
                                     finish();
-                                    Intent intent = new Intent(login_activity.this, Categories.class);
+                                    Intent intent = new Intent(login_activity.this, Question_One.class);
                                     startActivity(intent);
 
                                 }

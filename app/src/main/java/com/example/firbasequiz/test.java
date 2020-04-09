@@ -131,30 +131,34 @@ public class test extends AppCompatActivity implements View.OnClickListener {
 
                         if (task.isSuccessful()) {
 
-                                    progressBar.setVisibility(View.GONE);
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(test.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
-                                        UserID = mAuth.getCurrentUser().getUid();
-                                        DocumentReference documentReference = fStore.collection("users").document(UserID);
-                                        Map<String,Object> user = new HashMap<>();
-                                        user.put("fName",name);
-                                        user.put("email",email);
-                                        user.put("phone",phone);
+                      progressBar.setVisibility(View.GONE);
+                      if (task.isSuccessful()) {
+                          Toast.makeText(test.this, getString(R.string.registration_success), Toast.LENGTH_LONG).show();
+                          UserID = mAuth.getCurrentUser().getUid();
+                          DocumentReference documentReference = fStore.collection("users").document(UserID);
+                          Map<String,Object> user = new HashMap<>();
 
-                                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.d(TAG, "onSuccess: user Profile is created for "+ UserID);
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.d(TAG, "onFailure: " + e.toString());
-                                            }
-                                        });
-                                    }
+                          user.put("fName",name);
+                          user.put("email",email);
+                          user.put("phone",phone);
 
-                                    startActivity(new Intent(test.this , login_activity.class));
+
+
+                        
+                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                              @Override
+                              public void onSuccess(Void aVoid) {
+                                  Log.d(TAG, "onSuccess: user Profile is created for "+ UserID);
+                              }
+                          }).addOnFailureListener(new OnFailureListener() {
+                              @Override
+                              public void onFailure(@NonNull Exception e) {
+                                  Log.d(TAG, "onFailure: " + e.toString());
+                              }
+                          });
+                      }
+
+                                  startActivity(new Intent(test.this , login_activity.class));
 
                                 } else {
                             Toast.makeText(test.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
