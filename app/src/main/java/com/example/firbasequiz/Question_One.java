@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Database;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,8 +37,9 @@ public class Question_One extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DatabaseReference Database = fb.getReference();
     private DataSnapshot snapshot;
-    private DatabaseReference firstdatabase = Database.child("question");
+    private DatabaseReference firstdatabase;
     private DocumentReference noteRef = db.document("Game/QUestion 1");
+    public String a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +51,24 @@ public class Question_One extends AppCompatActivity {
         opt3 = findViewById(R.id.button3);
         mAuth = FirebaseAuth.getInstance();
         Firestore = FirebaseFirestore.getInstance();
-        textview = findViewById(R.id.textview);
+        textview = findViewById(R.id.textview2);
+
+Database=FirebaseDatabase.getInstance().getReference().child("questions").child("0").child("answers").child("0");
+
+        Database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { textview.setText(dataSnapshot.getValue(String.class));
+
+                Log.e("hellow",textview.toString());
 
 
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 

@@ -113,7 +113,7 @@ public class login_activity extends AppCompatActivity {
         if(auth.getCurrentUser() == null)
         {
             finish();
-            startActivity(new Intent(this , Categories.class));
+            startActivity(new Intent(this , MainActivity.class));
         }
     }
 }
