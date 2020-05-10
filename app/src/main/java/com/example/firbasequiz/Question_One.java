@@ -2,6 +2,7 @@ package com.example.firbasequiz;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Database;
 
 import android.os.Bundle;
@@ -27,57 +28,108 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Question_One extends AppCompatActivity {
-    private static final String FIRE_LOG = "Fire_Log";
-    private TextView textview;
-    private Button opt1,opt2,opt3;
-    private List<Question_One> questionsList;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore Firestore;
-    private FirebaseDatabase fb = FirebaseDatabase.getInstance();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DatabaseReference Database = fb.getReference();
-    private DataSnapshot snapshot;
-    private DatabaseReference firstdatabase;
-    private DocumentReference noteRef = db.document("Game/QUestion 1");
-    public String a;
+
+    Button opt1;
+    Button opt2, next, opt3;
+    TextView number, ques,total;
+    DatabaseReference databaseReference;
+    int num = 0;
+    String val = "";
+    response res = new response("",0);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateQuestion();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question__one);
+        opt1 = findViewById(R.id.btnopt1);
+        opt2 = findViewById(R.id.btnopt2);
+        opt3 = findViewById(R.id.btnopt3);
+//        next = findViewById(R.id.buttonnext);
+        number = findViewById(R.id.questionnum);
+        ques = findViewById(R.id.question);
+        total = findViewById(R.id.total);
+
+        number.setText(num + "/10");
 
 
-        opt1 = findViewById(R.id.button);
-        opt2 = findViewById(R.id.button2);
-        opt3 = findViewById(R.id.button3);
-        mAuth = FirebaseAuth.getInstance();
-        Firestore = FirebaseFirestore.getInstance();
-        textview = findViewById(R.id.textview2);
-
-Database=FirebaseDatabase.getInstance().getReference().child("questions").child("0").child("answers").child("0");
-
-        Database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { textview.setText(dataSnapshot.getValue(String.class));
-
-                Log.e("hellow",textview.toString());
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                num++;
+//
+//                number.setText(num + "/10");
+//
+//                updateQuestion();
+//            }
+//            });
 
     }
 
 
 
+    public void btnclick(View view) {
+
+
+        Button b = (Button) view;
+        String buttonText = b.getText().toString();
+        if(updateQuestion().getCorrectanswer().equalsIgnoreCase(buttonText))
+        {
+            num++;
+
+            number.setText(num + "/10");
+
+            updateQuestion();
+
+
+            res.CalculateScore(res.getPoints());
+            total.setText(String.valueOf(res.getTotal()));
+
+        }
+        else
+        {
+            Toast.makeText(this, "Wrong Answer", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public response updateQuestion()
+    {
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("questions").child(String.valueOf(num)).child("answers");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                    Books books = dataSnapshot.getValue(Books.class);
+                    //  Log.d("data" , String.copyValueOf(books.getOpt0()));
+
+
+                    ques.setText(books.getQuestion());
+                    opt1.setText(books.getOpt1());
+                    opt2.setText(books.getOpt2());
+                    opt3.setText(books.getOpt3());
+
+                    val = books.getcorrectindex();
+                    res.setCorrectanswer(val);
+
+                    res.setPoints(books.getPoints());
+
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+
+            });
+        return  res;
+    }
 
 }

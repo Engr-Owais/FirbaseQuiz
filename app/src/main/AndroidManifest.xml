@@ -21,7 +21,7 @@
     <activity android:name=".After_Splash"/>
         <activity android:name=".test" />
         <activity android:name=".login_activity" />
-        <activity android:name=".Categories" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
     </application>
 
