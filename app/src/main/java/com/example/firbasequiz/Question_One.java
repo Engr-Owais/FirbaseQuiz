@@ -87,7 +87,7 @@ public class Question_One extends AppCompatActivity {
 
 
             res.CalculateScore(res.getPoints());
-            total.setText(String.valueOf(res.getTotal()));
+            total.setText("Coins:" + String.valueOf(res.getTotal()));
 
         }
         else
