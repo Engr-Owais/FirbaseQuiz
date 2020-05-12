@@ -107,7 +107,7 @@ public class Question_One extends AppCompatActivity {
 
 
                     Books books = dataSnapshot.getValue(Books.class);
-                    //  Log.d("data" , String.copyValueOf(books.getOpt0()));
+//                      Log.d("data" , String.copyValueOf(books.getOpt0()));
 
 
                     ques.setText(books.getQuestion());

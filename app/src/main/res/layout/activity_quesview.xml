@@ -8,7 +8,7 @@
     android:background="@drawable/bgggg">
 
     <TextView
-        android:id="@+id/questionnum"
+        android:id="@+id/questionnum1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -24,7 +24,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/total"
+        android:id="@+id/total1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
